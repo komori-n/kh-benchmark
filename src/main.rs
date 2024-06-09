@@ -154,6 +154,7 @@ fn initialize_engine(
     }
 
     engine.prepare()?;
+    engine.send_command(&GuiCommand::UsiNewGame)?;
     Ok(engine)
 }
 
