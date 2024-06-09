@@ -1,0 +1,14 @@
+[package]
+name = "kh-benchmark"
+version = "0.1.0"
+authors = ["komori-n"]
+description = "A simple benchmarking tool for KomoringHeights"
+license = "MIT OR Apache-2.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+usi = "0.6"
+anyhow = "1.0"
+indicatif = "0.17"
+threadpool = "1.8"
