@@ -67,6 +67,8 @@ struct SolveStats {
     elapsed: Duration,
     /// The number of nodes searched
     nodes: usize,
+    /// The number of nodes searched in the last n positions
+    last_nodes: usize,
 
     /// The indices of the positions with an error or no mate
     error_or_nomate_indices: Vec<usize>,
@@ -78,6 +80,8 @@ impl SolveStats {
 
         let sfen_index = self.num_sfens;
         self.num_sfens += 1;
+        self.nodes += self.last_nodes;
+        self.last_nodes = 0;
         match mate {
             Mate(_) => self.num_mate += 1,
             NoMate => {
@@ -102,7 +106,7 @@ impl SolveStats {
                 })
                 .unwrap_or(0);
 
-            self.nodes += nodes as usize;
+            self.last_nodes = nodes as usize;
         }
     }
 }
